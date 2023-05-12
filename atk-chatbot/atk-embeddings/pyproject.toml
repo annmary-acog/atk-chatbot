@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "atk-embeddings"
+version = "0.4.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "atk_embeddings"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+openai = "^0.27.5"
+langchain = "^0.0.163"
+atk-vectordbs = "^0.3.0"
+
+[[tool.poetry.source]]
+name = "dev"
+url = "https://dev-pypi.aganitha.ai/"
+default = false
+secondary = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

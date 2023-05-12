@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "atk-chatbot-pipeline"
+version = "0.2.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "atk_chatbot_pipeline"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+atk-embeddings = "^0.4.0"
+atk-converters = "^0.3.0"
+
+
+[[tool.poetry.source]]
+name = "dev"
+url = "https://dev-pypi.aganitha.ai/"
+default = false
+secondary = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+whisper = "pip install git+https://github.com/openai/whisper.git"
+openai = "pip install openai"
+
+[tool.poetry.scripts]
+atk-chatbot-pipeline = "atk_chatbot_pipeline.run:main"

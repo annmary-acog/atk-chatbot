@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "atk-converters"
+version = "0.3.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "atk_converters"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+google-api-python-client = "^2.86.0"
+google-auth-httplib2 = "^0.1.0"
+google-auth-oauthlib = "^1.0.0"
+pypdf2 = "^3.0.1"
+moviepy = "^1.0.3"
+ffmpeg-python = "^0.2.0"
+pytube = "^12.1.3"
+numba = "^0.56.4"
+bs4 = "^0.0.1"
+unstructured = "^0.6.2"
+fake-useragent = "^1.1.3"
+aganitha-base-utils = "^0.1.7"
+pdfminer-six = "^20221105"
+typer = "0.9.0"
+jq = "^1.4.1"
+langchain = "0.0.163"
+
+[[tool.poetry.source]]
+name = "dev"
+url = "https://dev-pypi.aganitha.ai/"
+default = false
+secondary = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+whisper = "pip install git+https://github.com/openai/whisper.git"
+
+[tool.poetry.scripts]
+atk-converters-pipeline = "atk_converters.run_pipeline:main"

@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "atk-vectordbs"
+version = "0.3.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "atk_vectordbs"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+faiss-cpu = "^1.7.4"
+pymilvus = "^2.2.8"
+langchain = "^0.0.163"
+
+
+[[tool.poetry.source]]
+name = "dev"
+url = "https://dev-pypi.aganitha.ai/"
+default = false
+secondary = true
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
