@@ -3,6 +3,7 @@ from langchain.docstore.document import Document
 from atk_vectordbs.vector_dbs import BaseVectorDB
 from atk_embeddings.chunker import Chunker
 from typing import List
+import typer
 import logging
 import warnings
 
@@ -21,5 +22,5 @@ class EmbeddingsPipeline:
         chunks = chunker.create_chunks(source_docs)
         return chunks
 
-    def create_embeddings(self, chunks) -> None:
-        self.vector_db.store(chunks, self.embed_model)
+    def create_embeddings(self, chunks: List[Document], pickle_file: str = typer.Option(None)) -> None:
+        self.vector_db.store(chunks, self.embed_model, pickle_file)

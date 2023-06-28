@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 from langchain import embeddings
 from typing import List
 import pickle
+import typer
 import logging
 import warnings
 import os
@@ -18,20 +19,22 @@ class BaseVectorDB(ABC):
         pass
 
     @abstractmethod
-    def store(self, chunks: List[Document], embed_model: embeddings) -> None:
+    def store(self, chunks: List[Document], embed_model: embeddings, file: str = typer.Option(None)) -> None:
         pass
 
 
 class FaissDB(BaseVectorDB):
-    def store(self, chunks: List[Document], embed_model: embeddings) -> None:
+    def store(self, chunks: List[Document], embed_model: embeddings, file: str = typer.Option(None)) -> None:
         faiss_index = FAISS.from_documents(chunks, embed_model)
-        with open("faiss_index.pickle", "wb") as f:
+        if file is not None:
+            file = "faiss_index.pickle"
+        with open(file, "wb") as f:
             pickle.dump(faiss_index, f)
         logging.info("FAISS search_index created")
 
 
 class MilvusDB(BaseVectorDB):
-    def store(self, chunks: List[Document], embed_model: embeddings) -> None:
+    def store(self, chunks: List[Document], embed_model: embeddings, file: str = typer.Option(None)) -> None:
         connection_args = {
             "alias": "default",
             "uri": "https://in01-84cae738bde3a79.aws-us-west-2.vectordb.zillizcloud.com:19541",
